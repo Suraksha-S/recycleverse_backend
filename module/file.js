@@ -15,11 +15,36 @@ const fileSchema = new Schema({
     projectDetails:{type:Schema.Types.ObjectId,
         ref:'ProjectDetail'
     },
+    projectPrice:{
+        type:Number,
+        
+        required:true
+
+    },
     projectImages:[{
         type:Schema.Types.ObjectId,
         ref:'ProjectImages'
     }],
-    uploadDate: { type: Date, default: Date.now }
+    uploadDate: 
+    { type: Date,
+     default: Date.now 
+    },
+    like:{
+        type:Number,
+        default:0
+    },
+    dislike:{
+        type:Number,
+        default:0
+    },
+    likedBy:[{
+        type:Schema.Types.ObjectId,
+        ref:'User'
+    }],
+    dislikedBy:[{
+        type:Schema.Types.ObjectId,
+        ref:'User'
+    }]
 
 })
 

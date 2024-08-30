@@ -7,8 +7,12 @@ const buyprojectRoute = require('./routes/buyprojects')
 const imageRoute = require('./routes/images')
 const orderRoute = require('./routes/orders')
 const testimonialRoute=require('./routes/testimonials')
-require('dotenv').config();
-// const api = process.env.API_URL;
+const commentRoute=require('./routes/comments');
+const likedislikeRoute=require('./routes/likesdislikes');
+const wishlistRoute= require('./routes/wishlists');
+const cartRoute =require('./routes/carts');
+
+
 
 
 //Middleware
@@ -20,8 +24,10 @@ app.use('/api/rv',buyprojectRoute)
 // app.use('/api/rv', imageRoute)
 app.use('/api/rv', orderRoute)
 app.use('/api/rv' ,testimonialRoute)
-
-
+app.use('/api/rv',commentRoute);
+app.use('/api/rv',likedislikeRoute)
+app.use('/api/rv',cartRoute);
+app.use('/api/rv',wishlistRoute)
 
 
 
