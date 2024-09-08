@@ -22,12 +22,14 @@ app.use('/api/rv', fileRoute)  //Routes to upload the file
 app.use('/api/rv',projectdetailRoute)
 app.use('/api/rv',buyprojectRoute)
 // app.use('/api/rv', imageRoute)
-app.use('/api/rv', orderRoute)
+
 app.use('/api/rv' ,testimonialRoute)
 app.use('/api/rv',commentRoute);
 app.use('/api/rv',likedislikeRoute)
-app.use('/api/rv',cartRoute);
+
 app.use('/api/rv',wishlistRoute)
+app.use('/api/rv',cartRoute);
+app.use('/api/rv', orderRoute)
 
 
 

@@ -1,20 +1,18 @@
 const mongoose = require('mongoose');
+const {Schema}=mongoose;
 
-const orderItemSchema= mongoose.Schema({
-    quantity:{
-        type: Number,
-        required:true
-    },
-    // projectDetail:{
-    //     type:mongoose.Schema.Types.ObjectId,
-    //     ref:'ProjectDetail'
-    // },
-    file:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:'File'
-    },
 
-})
 
-const OrderItem = mongoose.model('OrderItem', orderItemSchema)
+const OrderItemSchema = new Schema({
+    projectId: { type: Schema.Types.ObjectId, ref: 'File', required: true },
+    quantity: { type: Number, required: true },
+    price: { type: Number, required: true }, // This stores the price at the time of order
+});
+
+
+
+
+
+
+const OrderItem = mongoose.model('OrderItem', OrderItemSchema)
 module.exports = OrderItem;

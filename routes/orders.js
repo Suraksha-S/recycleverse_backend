@@ -5,38 +5,15 @@ const OrderItem = require('../module/order-item')
 const router = express.Router();
 
 
-router.post('/orderitems', async(req,res)=>{
-    const orderItemsIds = Promise.all(req.body.orderItems.map(async(orderItem)=>{
-        let newOrderItem = new OrderItem({
-            quantity:orderItem.quantity,
-            file:orderItem.file
+const orderController = require('../controller/orderController');
 
-        });
-        newOrderItem= await newOrderItem.save()
-        return newOrderItem._id
-        
-    }))
-   
-    const orderItemsIdsResolved = await orderItemsIds;
-    console.log(orderItemsIdsResolved)
+// Route to create an order from the cart
+router.post('/order/create-from-cart', orderController.createOrderFromCart);
 
 
 
-    let order = new Order({
-        orderItems:orderItemsIdsResolved ,
-        status:req.body.status,
-        totalPrice:req.body.totalPrice,
-        user:req.body.user
-    })
-    order = await order.save()
-    if(!order){
-        return res.status(400).send("The order cannot be created")
-    }
-    res.send(order)
 
-})
-
-router.get('/orders', async (req,res)=>{
+router.get('/order/create-from-cart', async (req,res)=>{
 
     try {
         const orderList = await Order.find().populate('user')
