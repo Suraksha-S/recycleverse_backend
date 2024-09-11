@@ -3,10 +3,10 @@ const router=express.Router();
 const Comment=require('../module/comment')
 
 router.post('/comments',async(req,res)=>{
-    const {projectId, comment}=req.body;
+    const {userId,projectId, comment}=req.body;
     try {
        const newComment=new Comment({
-        projectId, comment
+        userId, projectId, comment
        })
        await newComment.save();
        res.status(200).json({
@@ -35,7 +35,7 @@ router.get('/comments',async(req,res)=>{
         
     }
 });
-router.get('/comments/:id',async(req,res)=>{
+router.get('/comments/:userId',async(req,res)=>{
     try {
         const comment=await Comment.findById(req.params.id);
         if(!comment){
@@ -52,9 +52,10 @@ router.get('/comments/:id',async(req,res)=>{
         
     }
 })
-router.put('/comments/:id',async(req,res)=>{
-    const {projectId, comment}=req.body;
+router.put('/comments/update/:userId',async(req,res)=>{
+    const {userId, projectId, comment}=req.body;
     const commentField={}
+    if(userId)commentField.userId=userId;
     if(projectId)commentField.projectId=projectId;
     if(comment)commentField.projectId=comment;
     
@@ -81,7 +82,7 @@ router.put('/comments/:id',async(req,res)=>{
     }
 
 })
-router.delete('/comments/:id',async(req,res)=>{
+router.delete('/comments/remove/:userId',async(req,res)=>{
     try {
         const comment= await Comment.findByIdAndDelete(req.params.id);
         if(!comment){

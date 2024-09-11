@@ -55,7 +55,7 @@ router.get('/testimonial/:id', async(req,res)=>{
         
     }
 })
-router.delete('/testimonial/:id', async(req,res)=>{
+router.delete('/testimonial/remove/:id', async(req,res)=>{
     try {
         const testimonial=await Testimonial.findByIdAndDelete(req.params.id);
     if(!testimonial){
@@ -70,7 +70,7 @@ router.delete('/testimonial/:id', async(req,res)=>{
     }
     
 });
-router.put('/testimonial/:id',async(req,res)=>{
+router.put('/testimonial/update/:id',async(req,res)=>{
      const {name, message,rating,date}=req.body;
      const testimonialField={};
      if(name)testimonialField.name=name;
